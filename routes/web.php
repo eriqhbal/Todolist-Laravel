@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+// Controllers
+use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,4 +18,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+// View
+Route::view('/template', 'template');
+
+// Controllers
+Route::controller(UserController::class)->group(function() {
+    Route::get('/login', 'login');
+    Route::post('login', 'doLogin');
+    Route::post('/logout', 'doLogout');
 });
